@@ -1,15 +1,19 @@
 package com.waracle.waracletest.app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
+import com.waracle.waracletest.async.Callback;
+import com.waracle.waracletest.async.NetworkLoaderCallback;
 
 public abstract class PresenterFragment<P extends Presenter> extends Fragment
     implements PresenterView {
 
     private P presenter;
 
-    protected P getPresenter() {
+    protected P presenter() {
         return presenter;
     }
 
@@ -32,6 +36,17 @@ public abstract class PresenterFragment<P extends Presenter> extends Fragment
         super.onStop();
 
         presenter.onStop();
+    }
+
+    @Override
+    public void networkDelegate(String url, Callback callback) {
+        ((DefaultActivity)getContext()).getSupportLoaderManager().restartLoader(0, null,
+                new NetworkLoaderCallback(getContext(), url, callback));
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
     }
 
     @Override

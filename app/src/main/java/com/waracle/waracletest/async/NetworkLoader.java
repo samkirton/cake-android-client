@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.waracle.waracletest.network.Load;
+import com.waracle.waracletest.network.Response;
 
 import java.net.URL;
 
@@ -23,9 +24,11 @@ class NetworkLoader extends AsyncTaskLoader<Result> {
     @Override
     public Result loadInBackground() {
         try {
-            return new Result(new Load(new URL(url)).fetch(), true);
+            Response response = new Load(new URL(url)).fetch();
+            data = new Result(new String(response.bytes(), "UTF-8"), response.code());
+            return data;
         } catch (Exception e) {
-            return new Result(null, false);
+            return new Result(null, -1);
         }
     }
 

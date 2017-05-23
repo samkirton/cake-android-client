@@ -17,7 +17,7 @@ public class NetworkLoaderCallback implements LoaderManager.LoaderCallbacks<Resu
     }
 
     @Override
-    public Loader onCreateLoader(int id, Bundle args) {
+    public Loader<Result> onCreateLoader(int id, Bundle args) {
         return new NetworkLoader(url, context);
     }
 

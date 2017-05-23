@@ -3,7 +3,6 @@ package com.waracle.waracletest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -57,6 +56,10 @@ public class MainActivity extends DefaultActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_refresh) {
+            CakeFragment cakeFragment = (CakeFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.main_activity_root);
+
+            cakeFragment.refresh();
             return true;
         }
 
@@ -82,8 +85,8 @@ public class MainActivity extends DefaultActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            mListView = (ListView) rootView.findViewById(R.id.list);
+            View rootView = inflater.inflate(R.layout.cake_fragment, container, false);
+            mListView = (ListView) rootView.findViewById(R.id.cake_fragment_list);
             return rootView;
         }
 
@@ -188,23 +191,23 @@ public class MainActivity extends DefaultActivity {
             @SuppressLint("ViewHolder")
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                LayoutInflater inflater = LayoutInflater.from(getActivity());
-                View root = inflater.inflate(R.layout.list_item_layout, parent, false);
-                if (root != null) {
-                    TextView title = (TextView) root.findViewById(R.id.title);
-                    TextView desc = (TextView) root.findViewById(R.id.desc);
-                    ImageView image = (ImageView) root.findViewById(R.id.image);
-                    try {
-                        JSONObject object = (JSONObject) getItem(position);
-                        title.setText(object.getString("title"));
-                        desc.setText(object.getString("desc"));
-                        mImageLoader.load(object.getString("image"), image);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+//                LayoutInflater inflater = LayoutInflater.from(getActivity());
+//                View root = inflater.inflate(R.layout.cake_list_item, parent, false);
+//                if (root != null) {
+//                    TextView title = (TextView) root.findViewById(R.id.title);
+//                    TextView desc = (TextView) root.findViewById(R.id.desc);
+//                    ImageView image = (ImageView) root.findViewById(R.id.image);
+//                    try {
+//                        JSONObject object = (JSONObject) getItem(position);
+//                        title.setText(object.getString("title"));
+//                        desc.setText(object.getString("desc"));
+//                        mImageLoader.load(object.getString("image"), image);
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
 
-                return root;
+                return null;
             }
 
             public void setItems(JSONArray items) {

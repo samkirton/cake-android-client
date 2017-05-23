@@ -14,16 +14,16 @@ public class Load {
         this.url = url;
     }
 
-    public String fetch() throws IOException {
-        final String body;
+    public Response fetch() throws IOException {
+        final Response body;
         final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-            body = new String(
+            body = new Response(
                     new StreamBytes(in).read(),
-                    new Charset(urlConnection.getRequestProperty("Content-Type")).parse()
+                    urlConnection.getResponseCode()
             );
 
         } finally {

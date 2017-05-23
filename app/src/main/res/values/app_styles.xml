@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Cake.TextAppearance.Header" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_header_24</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Cake.TextAppearance.Title" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_title_20</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="Cake.TextAppearance.Body" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_header_16</item>
+    </style>
+
+</resources>

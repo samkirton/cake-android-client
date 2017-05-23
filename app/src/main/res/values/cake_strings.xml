@@ -1,0 +1,3 @@
+<resources>
+    <string name="cake_error_body">Could not fetch cake :(</string>
+</resources>

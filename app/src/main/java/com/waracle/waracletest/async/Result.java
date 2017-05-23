@@ -2,18 +2,18 @@ package com.waracle.waracletest.async;
 
 public class Result {
     private final String body;
-    private final boolean success;
+    private final int code;
 
     public String getBody() {
         return body;
     }
 
     public boolean success() {
-        return success;
+        return code >= 200 && code < 300;
     }
 
-    public Result(String body, boolean success) {
+    Result(String body, int code) {
         this.body = body;
-        this.success = success;
+        this.code = code;
     }
 }
