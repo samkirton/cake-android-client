@@ -1,4 +1,4 @@
-package com.waracle.androidtest;
+package com.waracle.waracletest;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.waracle.androidtest;
+package com.waracle.waracletest;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -57,7 +57,7 @@ public class ImageLoader {
             // Can you think of a way to make the entire
             // HTTP more efficient using HTTP headers??
 
-            return StreamUtils.readUnknownFully(inputStream);
+            return StreamUtils.read(inputStream);
         } finally {
             // Close the input stream if it exists.
             StreamUtils.close(inputStream);

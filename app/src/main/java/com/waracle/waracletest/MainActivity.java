@@ -1,4 +1,4 @@
-package com.waracle.androidtest;
+package com.waracle.waracletest;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.waracle.waracletest.fragment.cake.CakeFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new CakeFragment())
                     .commit();
         }
     }
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Also, Do you trust any utils thrown your way????
 
-                byte[] bytes = StreamUtils.readUnknownFully(in);
+                byte[] bytes = StreamUtils.read(in);
 
                 // Read in charset of HTTP content.
                 String charset = parseCharset(urlConnection.getRequestProperty("Content-Type"));
