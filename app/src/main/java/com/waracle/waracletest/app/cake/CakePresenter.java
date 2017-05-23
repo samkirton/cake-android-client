@@ -1,7 +1,7 @@
-package com.waracle.waracletest.fragment.cake;
+package com.waracle.waracletest.app.cake;
 
-import com.waracle.waracletest.fragment.Presenter;
-import com.waracle.waracletest.fragment.PresenterView;
+import com.waracle.waracletest.app.Presenter;
+import com.waracle.waracletest.app.PresenterView;
 
 class CakePresenter extends Presenter<PresenterView> {
 

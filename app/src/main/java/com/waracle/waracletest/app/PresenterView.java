@@ -1,4 +1,4 @@
-package com.waracle.waracletest.fragment;
+package com.waracle.waracletest.app;
 
 public interface PresenterView {
 

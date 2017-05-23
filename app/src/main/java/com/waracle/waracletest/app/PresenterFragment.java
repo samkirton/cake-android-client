@@ -1,4 +1,4 @@
-package com.waracle.waracletest.fragment;
+package com.waracle.waracletest.app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
