@@ -15,6 +15,7 @@ import com.waracle.waracletest.R;
 import com.waracle.waracletest.app.PresenterFragment;
 import com.waracle.waracletest.app.data.Cake;
 import com.waracle.waracletest.app.ui.DefaultDividerItemDecoration;
+import com.waracle.waracletest.async.image.ImageLoader;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class CakeFragment extends PresenterFragment<CakePresenter> implements Ca
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cake_fragment, container, false);
 
-        adapter = new CakeAdapter(getContext());
+        adapter = new CakeAdapter(presenter().imageNotFound(), getContext());
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.cake_fragment_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -62,7 +63,7 @@ public class CakeFragment extends PresenterFragment<CakePresenter> implements Ca
 
     @Override
     protected CakePresenter setupPresenter() {
-        return new CakePresenter(this);
+        return new CakePresenter(this, new ImageLoader(this, presenter().imageDownloaded()));
     }
 
     @Override

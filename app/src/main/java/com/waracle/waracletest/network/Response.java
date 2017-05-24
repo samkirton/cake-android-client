@@ -12,7 +12,7 @@ public class Response {
         return code;
     }
 
-    public Response(byte[] bytes, int code) {
+    Response(byte[] bytes, int code) {
         this.bytes = bytes;
         this.code = code;
     }

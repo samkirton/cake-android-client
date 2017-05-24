@@ -2,11 +2,11 @@ package com.waracle.waracletest.app;
 
 import android.content.Context;
 
-import com.waracle.waracletest.async.Callback;
+import com.waracle.waracletest.async.network.NetworkCallback;
 
 public interface PresenterView {
 
-    void networkDelegate(String url, Callback callback);
+    void networkDelegate(String url, NetworkCallback callback);
 
     Context getContext();
 

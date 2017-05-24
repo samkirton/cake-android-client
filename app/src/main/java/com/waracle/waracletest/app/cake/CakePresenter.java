@@ -3,13 +3,23 @@ package com.waracle.waracletest.app.cake;
 import com.waracle.waracletest.R;
 import com.waracle.waracletest.app.Presenter;
 import com.waracle.waracletest.app.data.CakeList;
-import com.waracle.waracletest.async.Callback;
-import com.waracle.waracletest.async.Result;
+import com.waracle.waracletest.async.image.ImageCallback;
+import com.waracle.waracletest.async.image.ImageLoader;
+import com.waracle.waracletest.async.image.ImageResult;
+import com.waracle.waracletest.async.network.NetworkCallback;
+import com.waracle.waracletest.async.network.NetworkResult;
+import com.waracle.waracletest.storage.ImageNotFoundCallback;
+
+import static com.waracle.waracletest.app.data.Api.CAKE_ENDPOINT;
 
 class CakePresenter extends Presenter<CakeView> {
 
-    CakePresenter(CakeView view) {
+    private final ImageLoader imageLoader;
+
+    CakePresenter(ImageLoader imageLoader, CakeView view) {
         super(view);
+
+        this.imageLoader = imageLoader;
     }
 
     @Override
@@ -17,27 +27,39 @@ class CakePresenter extends Presenter<CakeView> {
         loadCakes();
     }
 
-    @Override
-    protected void stop() {
-
-    }
-
     void loadCakes() {
         view().startProgress();
 
-        String CAKE_ENDPOINT = "https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json";
         view().networkDelegate(CAKE_ENDPOINT, cakesResponse());
     }
 
-    private Callback cakesResponse() {
-        return new Callback() {
+    private NetworkCallback cakesResponse() {
+        return new NetworkCallback() {
             @Override
-            public void done(Result result) {
+            public void done(NetworkResult result) {
                 if (result.success()) {
                     cakesSuccess(new CakeList(result.getBody()));
                 } else {
                     cakesFailure();
                 }
+            }
+        };
+    }
+
+    ImageNotFoundCallback imageNotFound() {
+        return new ImageNotFoundCallback() {
+            @Override
+            public void notFound(String url, int position) {
+                imageLoader.loadImage(url, position);
+            }
+        };
+    }
+
+    ImageCallback imageDownloaded() {
+        return new ImageCallback() {
+            @Override
+            public void done(ImageResult imageResult) {
+
             }
         };
     }
@@ -57,5 +79,10 @@ class CakePresenter extends Presenter<CakeView> {
                 view().getContext().getString(R.string.app_error_title_sorry),
                 view().getContext().getString(R.string.cake_error_body)
         );
+    }
+
+    @Override
+    protected void stop() {
+
     }
 }

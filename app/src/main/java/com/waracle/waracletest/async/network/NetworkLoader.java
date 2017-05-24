@@ -1,4 +1,4 @@
-package com.waracle.waracletest.async;
+package com.waracle.waracletest.async.network;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
@@ -9,9 +9,9 @@ import com.waracle.waracletest.network.Response;
 import java.net.URL;
 
 
-class NetworkLoader extends AsyncTaskLoader<Result> {
+class NetworkLoader extends AsyncTaskLoader<NetworkResult> {
 
-    private Result data;
+    private NetworkResult data;
 
     private final String url;
 
@@ -22,18 +22,18 @@ class NetworkLoader extends AsyncTaskLoader<Result> {
     }
 
     @Override
-    public Result loadInBackground() {
+    public NetworkResult loadInBackground() {
         try {
             Response response = new Load(new URL(url)).fetch();
-            data = new Result(new String(response.bytes(), "UTF-8"), response.code());
+            data = new NetworkResult(new String(response.bytes(), "UTF-8"), response.code());
             return data;
         } catch (Exception e) {
-            return new Result(null, -1);
+            return new NetworkResult(null, -1);
         }
     }
 
     @Override
-    public void deliverResult(Result data) {
+    public void deliverResult(NetworkResult data) {
         if (!isReset() && isStarted()) {
             super.deliverResult(data);
         }

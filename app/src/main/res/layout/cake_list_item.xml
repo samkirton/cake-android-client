@@ -11,7 +11,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp">
 
-        <ImageView
+        <com.waracle.waracletest.app.ui.StoredImageView
             android:id="@+id/cake_list_item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

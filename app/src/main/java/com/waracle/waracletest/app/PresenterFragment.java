@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import com.waracle.waracletest.async.Callback;
-import com.waracle.waracletest.async.NetworkLoaderCallback;
+import com.waracle.waracletest.async.network.NetworkCallback;
+import com.waracle.waracletest.async.network.NetworkLoaderCallback;
 
 public abstract class PresenterFragment<P extends Presenter> extends Fragment
     implements PresenterView {
@@ -18,8 +18,8 @@ public abstract class PresenterFragment<P extends Presenter> extends Fragment
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         presenter = setupPresenter();
     }
@@ -39,7 +39,7 @@ public abstract class PresenterFragment<P extends Presenter> extends Fragment
     }
 
     @Override
-    public void networkDelegate(String url, Callback callback) {
+    public void networkDelegate(String url, NetworkCallback callback) {
         ((DefaultActivity)getContext()).getSupportLoaderManager().restartLoader(0, null,
                 new NetworkLoaderCallback(getContext(), url, callback));
     }

@@ -1,6 +1,6 @@
-package com.waracle.waracletest.async;
+package com.waracle.waracletest.async.network;
 
-public class Result {
+public class NetworkResult {
     private final String body;
     private final int code;
 
@@ -12,7 +12,7 @@ public class Result {
         return code >= 200 && code < 300;
     }
 
-    Result(String body, int code) {
+    NetworkResult(String body, int code) {
         this.body = body;
         this.code = code;
     }
