@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="cake_list_item_image_size">64dp</dimen>
+
+</resources>

@@ -1,7 +1,7 @@
 package com.waracle.waracletest.app.cake;
 
 import com.waracle.waracletest.app.PresenterView;
-import com.waracle.waracletest.app.data.Cake;
+import com.waracle.waracletest.app.cake.api.Cake;
 
 import java.util.List;
 

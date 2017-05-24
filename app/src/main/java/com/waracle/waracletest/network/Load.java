@@ -19,12 +19,18 @@ public class Load {
         final HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
         try {
+            int code = urlConnection.getResponseCode();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-            body = new Response(
-                    new StreamBytes(in).read(),
-                    urlConnection.getResponseCode()
-            );
+            if (code == HttpURLConnection.HTTP_MOVED_TEMP ||
+                    code == HttpURLConnection.HTTP_MOVED_PERM) {
+                return new Load(new URL(urlConnection.getHeaderField("Location"))).fetch();
+            } else {
+                body = new Response(
+                        new StreamBytes(in).read(),
+                        code
+                );
+            }
 
         } finally {
             urlConnection.disconnect();

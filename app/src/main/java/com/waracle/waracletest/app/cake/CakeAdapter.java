@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.waracle.waracletest.R;
-import com.waracle.waracletest.app.data.Cake;
+import com.waracle.waracletest.app.cake.api.Cake;
 import com.waracle.waracletest.app.ui.StoredImageView;
-import com.waracle.waracletest.storage.FindImage;
-import com.waracle.waracletest.storage.ImageNotFoundCallback;
+import com.waracle.waracletest.cache.BitmapCache;
+import com.waracle.waracletest.cache.FindImage;
+import com.waracle.waracletest.cache.ImageNotFoundCallback;
 
 import java.util.List;
+
+import static com.waracle.waracletest.app.DefaultApplication.BITMAP_CACHE;
 
 class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.CakeViewHolder> {
 
@@ -79,11 +82,16 @@ class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.CakeViewHolder> {
             image.load(
                     new FindImage(
                             cake.getImage(),
-                            image.getContext()
+                            bitmapCache(itemView.getContext())
                     ),
                     position,
                     imageNotFoundCallback
             );
+        }
+
+        @SuppressWarnings("WrongConstant")
+        private BitmapCache bitmapCache(Context context) {
+            return (BitmapCache) context.getApplicationContext().getSystemService(BITMAP_CACHE);
         }
     }
 }

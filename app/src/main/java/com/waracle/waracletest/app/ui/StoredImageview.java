@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.waracle.waracletest.storage.FindImage;
-import com.waracle.waracletest.storage.ImageNotFoundCallback;
+import com.waracle.waracletest.cache.FindImage;
+import com.waracle.waracletest.cache.ImageNotFoundCallback;
 
 public class StoredImageView extends ImageView {
 
@@ -27,6 +27,7 @@ public class StoredImageView extends ImageView {
             Bitmap bitmap = findImage.bitmap();
             setImageBitmap(bitmap);
         } else {
+            setImageBitmap(null);
             imageNotFoundCallback.notFound(findImage.getUrl(), position);
         }
     }

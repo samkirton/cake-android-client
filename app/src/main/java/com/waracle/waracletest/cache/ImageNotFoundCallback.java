@@ -1,4 +1,4 @@
-package com.waracle.waracletest.storage;
+package com.waracle.waracletest.cache;
 
 public interface ImageNotFoundCallback {
 

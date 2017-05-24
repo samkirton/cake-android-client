@@ -1,4 +1,4 @@
-package com.waracle.waracletest.app.data;
+package com.waracle.waracletest.app.cake.api;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +20,7 @@ public class Cake {
         return image;
     }
 
-    public Cake(JSONObject json) throws JSONException {
+    Cake(JSONObject json) throws JSONException {
         title = json.has("title") ? json.getString("title") : null;
         desc = json.has("desc") ? json.getString("desc") : null;
         image = json.has("image") ? json.getString("image") : null;

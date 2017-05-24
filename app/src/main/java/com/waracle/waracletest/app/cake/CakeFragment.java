@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.waracle.waracletest.R;
 import com.waracle.waracletest.app.PresenterFragment;
-import com.waracle.waracletest.app.data.Cake;
+import com.waracle.waracletest.app.cake.api.Cake;
 import com.waracle.waracletest.app.ui.DefaultDividerItemDecoration;
 
 import java.util.List;

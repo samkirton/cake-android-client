@@ -2,16 +2,15 @@ package com.waracle.waracletest.app.cake;
 
 import com.waracle.waracletest.R;
 import com.waracle.waracletest.app.Presenter;
-import com.waracle.waracletest.app.data.CakeList;
+import com.waracle.waracletest.app.cake.api.CakeList;
 import com.waracle.waracletest.async.image.ImageCallback;
 import com.waracle.waracletest.async.image.ImageLoader;
 import com.waracle.waracletest.async.image.ImageResult;
 import com.waracle.waracletest.async.network.NetworkCallback;
 import com.waracle.waracletest.async.network.NetworkResult;
-import com.waracle.waracletest.storage.FindImage;
-import com.waracle.waracletest.storage.ImageNotFoundCallback;
+import com.waracle.waracletest.cache.ImageNotFoundCallback;
 
-import static com.waracle.waracletest.app.data.Api.CAKE_ENDPOINT;
+import static com.waracle.waracletest.app.cake.api.Api.CAKE_ENDPOINT;
 
 class CakePresenter extends Presenter<CakeView> {
 
@@ -20,7 +19,7 @@ class CakePresenter extends Presenter<CakeView> {
     CakePresenter(CakeView view) {
         super(view);
 
-        this.imageLoader = new ImageLoader(
+        imageLoader = new ImageLoader(
                 view.getContext(),
                 new ImageCallback() {
                     @Override
