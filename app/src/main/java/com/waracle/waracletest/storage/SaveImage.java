@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 
 public class SaveImage {
     private final String name;
@@ -26,7 +27,8 @@ public class SaveImage {
     public void save() {
 
         try {
-            File file = new File(context.getFilesDir(), name);
+            String encodedUrl = URLEncoder.encode(name, "UTF-8");
+            File file = new File(context.getFilesDir(), encodedUrl);
             FileOutputStream fos = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
 
@@ -34,6 +36,8 @@ public class SaveImage {
 
             path = file.getAbsolutePath();
 
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            ignored.printStackTrace();
+        }
     }
 }

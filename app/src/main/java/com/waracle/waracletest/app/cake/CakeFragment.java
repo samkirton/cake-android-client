@@ -1,7 +1,6 @@
 package com.waracle.waracletest.app.cake;
 
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import com.waracle.waracletest.R;
 import com.waracle.waracletest.app.PresenterFragment;
 import com.waracle.waracletest.app.data.Cake;
 import com.waracle.waracletest.app.ui.DefaultDividerItemDecoration;
-import com.waracle.waracletest.async.image.ImageLoader;
 
 import java.util.List;
 
@@ -63,7 +61,7 @@ public class CakeFragment extends PresenterFragment<CakePresenter> implements Ca
 
     @Override
     protected CakePresenter setupPresenter() {
-        return new CakePresenter(this, new ImageLoader(this, presenter().imageDownloaded()));
+        return new CakePresenter(this);
     }
 
     @Override
@@ -90,5 +88,10 @@ public class CakeFragment extends PresenterFragment<CakePresenter> implements Ca
         errorContainer.setVisibility(View.VISIBLE);
         errorTitleView.setText(title);
         errorBodyView.setText(body);
+    }
+
+    @Override
+    public void imageLoadedAtPosition(int position) {
+        adapter.imageLoaded(position);
     }
 }

@@ -8,6 +8,7 @@ import com.waracle.waracletest.async.image.ImageLoader;
 import com.waracle.waracletest.async.image.ImageResult;
 import com.waracle.waracletest.async.network.NetworkCallback;
 import com.waracle.waracletest.async.network.NetworkResult;
+import com.waracle.waracletest.storage.FindImage;
 import com.waracle.waracletest.storage.ImageNotFoundCallback;
 
 import static com.waracle.waracletest.app.data.Api.CAKE_ENDPOINT;
@@ -16,10 +17,18 @@ class CakePresenter extends Presenter<CakeView> {
 
     private final ImageLoader imageLoader;
 
-    CakePresenter(ImageLoader imageLoader, CakeView view) {
+    CakePresenter(CakeView view) {
         super(view);
 
-        this.imageLoader = imageLoader;
+        this.imageLoader = new ImageLoader(
+                view.getContext(),
+                new ImageCallback() {
+                    @Override
+                    public void done(ImageResult imageResult) {
+                        imageLoaded(imageResult.getPosition());
+                    }
+                }
+        );
     }
 
     @Override
@@ -55,15 +64,6 @@ class CakePresenter extends Presenter<CakeView> {
         };
     }
 
-    ImageCallback imageDownloaded() {
-        return new ImageCallback() {
-            @Override
-            public void done(ImageResult imageResult) {
-
-            }
-        };
-    }
-
     private void cakesSuccess(CakeList cakeList) {
 
         view().hideProgress();
@@ -79,6 +79,10 @@ class CakePresenter extends Presenter<CakeView> {
                 view().getContext().getString(R.string.app_error_title_sorry),
                 view().getContext().getString(R.string.cake_error_body)
         );
+    }
+
+    private void imageLoaded(int position) {
+        view().imageLoadedAtPosition(position);
     }
 
     @Override

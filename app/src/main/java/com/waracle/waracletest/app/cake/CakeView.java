@@ -10,4 +10,6 @@ interface CakeView extends PresenterView {
     void showCakes(List<Cake> cakes);
 
     void showError(String title, String body);
+
+    void imageLoadedAtPosition(int position);
 }

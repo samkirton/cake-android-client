@@ -13,7 +13,7 @@ public class ImageResult {
         return position;
     }
 
-    public ImageResult(String url, int position) {
+    ImageResult(String url, int position) {
         this.url = url;
         this.position = position;
     }

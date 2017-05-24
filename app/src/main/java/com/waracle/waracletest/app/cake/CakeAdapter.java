@@ -34,6 +34,10 @@ class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.CakeViewHolder> {
         notifyDataSetChanged();
     }
 
+    void imageLoaded(int position) {
+        notifyItemChanged(position);
+    }
+
     @Override
     public CakeAdapter.CakeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new CakeViewHolder(
@@ -72,7 +76,14 @@ class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.CakeViewHolder> {
         void populate(Cake cake, int position) {
             title.setText(cake.getTitle());
             desc.setText(cake.getDesc());
-            image.load(new FindImage(cake.getImage()), position, imageNotFoundCallback);
+            image.load(
+                    new FindImage(
+                            cake.getImage(),
+                            image.getContext()
+                    ),
+                    position,
+                    imageNotFoundCallback
+            );
         }
     }
 }
