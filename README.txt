@@ -1,10 +1,18 @@
+
+
+
+## Third parties libraries I would have used:
+- RxJava2 / RxAndroid2
+- Facebook Fresco
+##
+
+
 Coding Test (fictitious)
 
 
 ***
 NOTE: PLEASE DO NOT USE THIRD PARTY LIBRARIES. However, feel free to state which third party libraries you might have used.
 ***
-
 
 Attached you’ll find the code for a simple mobile app to browse cakes. The developer who wrote this code was a summer intern and unfortunately did not manage to finish the project.  The project compiles but the app crashes as soon as it runs.
 
