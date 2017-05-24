@@ -9,12 +9,12 @@ public class BitmapCache extends LruCache<String, Bitmap> {
         super(memoryLimit.size());
     }
 
+    public boolean has(String key) {
+        return get(key) != null;
+    }
+
     @Override
     protected int sizeOf(String key, Bitmap bitmap) {
         return (bitmap.getRowBytes() * bitmap.getHeight()) / 1024;
-    }
-
-    public boolean has(String key) {
-        return get(key) != null;
     }
 }

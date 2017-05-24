@@ -1,8 +1,8 @@
 package com.waracle.waracletest.network;
 
 public class Response {
-    private byte[] bytes;
-    private int code;
+    private final byte[] bytes;
+    private final int code;
 
     public byte[] bytes() {
         return bytes;

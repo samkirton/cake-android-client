@@ -1,9 +1,9 @@
 <resources>
+
     <string name="app_name">Cake</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_refresh">Refresh</string>
-
     <string name="app_error_title_sorry">Sorry</string>
-
     <string name="app_button_retry">Retry</string>
+
+    <string name="main_action_refresh">Refresh</string>
+
 </resources>
